@@ -1,0 +1,194 @@
+<!Doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-map"></i>
+                <span>WhatBytes</span>
+            </div>
+            <div class="profile">
+                <i class="fas fa-user-circle"></i>
+                <span class="user">User Name</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <aside class="sidebar">
+            <div class="nav-item active">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-award"></i>
+                <span>Skill Test</span>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-briefcase"></i>
+                <span>Internship</span>
+            </div>
+        </aside>
+
+        <div class="dashboard">
+            <h2 class="section-title">Skill Test Results</h2>
+            <div class="skill-section">
+                <div class="skill-content-0">
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fab fa-html5 fa-2x"></i>
+                            <div class="skill-info">
+                                <h3>HTML5 Assessment</h3>
+                                <p>Questions: 15 | Duration: 30 mins | Submitted on 5 June 2021</p>
+                            </div>
+                            <button id="popup-update" class="btn btn-primary">Update</button>
+                        </div>
+
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="icon">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <div class="card-info">
+                                    <h4 id="display-rank">1</h4>
+                                    <p>Your Rank</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="icon">
+                                    <i class="fas fa-percentage"></i>
+                                </div>
+                                <div class="card-info">
+                                    <h4 id="display-percentage">30%</h4>
+                                    <p>Percentage</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="card-info">
+                                    <h4 id="display-score">10/15</h4>
+                                    <p>Correct Answers</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="graph-container">
+                            <h3>Performance Comparison</h3>
+                            <p>You scored in the 30th percentile, below the average of 72%</p>
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-content-1">
+                    <div class="skill-card">
+                        <h3>Syllabus Analysis</h3>
+                        <div class="progress-container">
+                            <h4>HTML Tools, Forms, History</h4>
+                            <div class="progress-content">
+                                <div class="progress-bar blue">
+                                    <div class="progress progress-blue" style="width: 80%"></div>
+                                </div>
+                                <span class="progress-label">80%</span>
+                            </div>
+
+                            <h4>Tags & References in HTML</h4>
+                            <div class="progress-content">
+                                <div class="progress-bar orange">
+                                    <div class="progress progress-orange" style="width: 60%"></div>
+                                </div>
+                                <span class="progress-label">60%</span>
+                            </div>
+
+                            <h4>Tables & References in HTML</h4>
+                            <div class="progress-content">
+                                <div class="progress-bar red">
+                                    <div class="progress progress-red" style="width: 24%"></div>
+                                </div>
+                                <span class="progress-label">24%</span>
+                            </div>
+
+                            <h4>Tables & CSS Basics</h4>
+                            <div class="progress-content">
+                                <div class="progress-bar green">
+                                    <div class="progress progress-green" style="width: 96%"></div>
+                                </div>
+                                <span class="progress-label">96%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="improvement-card">
+                        <div class="score-header">
+                            <h3>Question Analysis</h3>
+                            <span id="display-summary-score">10/15</span>
+                        </div>
+                        <p class="score-text">
+                            You scored <span id="display-correct-score">10</span> questions correct out of 15. However,
+                            it still needs some improvements.
+                        </p>
+                        <div id="progress-circle" class="circular-progress">
+                            <svg>
+                                <circle cx="100" cy="100" r="80" class="bg" />
+                                <circle cx="100" cy="100" r="80" class="progress" />
+                            </svg>
+                            <div class="progress-value">
+                                <span id="display-percentage-score">67%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="popup-modal" class="popup-modal">
+        <div class="popup-container">
+            <div class="popup-content">
+                <div class="popup-heading">
+                    <h1>Update Scores</h1>
+                    <i class="fab fa-html5 fa-2x"></i>
+                </div>
+                <div class="popup-main">
+                    <ul>
+                        <li>
+                            <p>Update your <strong>Rank</strong></p>
+                            <input type="text" id="rank" name="rank" title="Enter your Rank">
+                            <span class="error" id="rank-error"></span>
+                        </li>
+                        <li>
+                            <p>Update your <strong>Percentile</strong></p>
+                            <input type="text" id="percentage" name="percentage" title="Enter your Percentage">
+                            <span class="error" id="percentage-error"></span>
+                        </li>
+                        <li>
+                            <p>Update your <strong>Current Score (out of 15)</strong></p>
+                            <input type="text" id="score" name="score" title="Enter your Score">
+                            <span class="error" id="score-error"></span>
+                        </li>
+                    </ul>
+                    <div class="popup-btn">
+                        <button class="cancel">Cancel</button>
+                        <button class="save">Save -></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
