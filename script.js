@@ -74,6 +74,9 @@ popUpBtn.addEventListener('click', function (event) {
         if (!scoreInput.value) {
             showError(scoreInput, 'Score is required.');
             valid = false;
+        } else if(parseInt(scoreInput.value) >= totalScore) {
+            showError(scoreInput, `Score should be less than ${totalScore}.`)
+            valid = false;
         } else {
             clearError(scoreInput);
         }
